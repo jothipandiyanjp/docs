@@ -1,0 +1,445 @@
+Supervisied Learning:
+---------------------
+	     
+	Supervised learning is a machine learning technique that requires labeled training data.
+	The training algorithm uses a known dataset (called the training dataset) to make predictions.	
+		- Decision Trees,
+		- Random Forest
+		- k-nearset neighbors, 
+		- naivebayes, 
+		- Logistic regression, 
+		- Preceptron and multilevel preceptron, 
+		- Neutral networks, 
+		- SVM and Kernel estimation.
+
+UnSupervisied Learning:
+---------------------
+ 
+	It is used for clustering population in different groups, which is widely used for segmenting customers in different groups for specific intervention.
+       - Clustering 
+           |--> k-means, fuzzy kmeans, MinHash, Hierarchial clustering
+       - Hidden Markov Models
+       - Feature Extraction models
+	- Self-Organizing maps(Neutral Nets)
+
+Reinforcement Learning
+------------------------
+		Using this algorithm, the machine is trained to make specific decisions.
+		The machine is exposed to an environment where it trains itself continually using trial and error.
+		This machine learns from past experience and tries to capture the best possible knowledge to make accurate business decisions.
+		- Markov Decision Process
+
+
+Note:
+Mean squared error:
+	The difference between the expected outcome and the actual outcome for the training set, is minimized.
+
+
+
+
+
+In mahout machine learning algorithms are:
+		- Clustering
+		- Classification  
+		- Recommendation
+
+a. Classification:
+--------------
+		Classification decides how much an items belongs to one particular category
+		Mahout can be used to build a document classifier or an e-mail classifier.
+
+b. Clustering
+-----------		
+		To group items together based on some sort of similarities
+		Difference between clustering	and classification	is that in classification, we know the end	class name
+
+c. Dimensional reduction :
+-------------------------
+		Features are called dimensions.
+		The process of reducing number of random variables under consideration.
+         Ex: SVD, Lanczos
+
+d. Topic Modeling
+------------------
+		To capture abstract idea of document
+		Given that a document is	about a particular topic, one would expect particular words	to appear	in the document more or less	frequently.
+		Ex: LDA (Latent Dirchlet Allocation)
+
+Logistics Regrssion
+---------------------
+
+a. Regression
+          Regression analysis is used for prediction and forecasting. 
+		It is used to find out the relationship betweeen explanatory variables and target variables.
+		Ex: to predict salary of an employee, we have to collect       
+factors that can be age , education, earsof experiece and so.
+		Regrssion analysis techinques:
+			1. Linear regression
+			2. ordinary least square regression
+			3. Logistics regression
+   
+
+b. Linear Regression:
+		We create model that predict the value of a target variable with the help explanatory variable.
+
+
+
+
+
+Clustering :
+
+Types of clustering:     
+1. Hard clustering
+		Data point in n-dimensional space only belongs to one cluster. 
+       Ex: K-means
+2. Soft clustering
+ 		A given data point is belongs to more than one given cluster
+	Ex: Fuzzy K-means
+
+Hierarchial Clustering:
+----------------------
+	This technique operate on the simplest principle, which is data-point closer to base point will behave more similar compared to a data-point which is far from base point.
+	The only problem with the technique is that it is able to only handle small number of data-points and is very time consuming.
+	Because it tries to calculate the distance between all possible combination and then takes one decision to combine two groups/individual data-point.
+
+K-Means
+-----------
+		It is able to handle large number of data points
+			
+
+a. Canopy
+        
+
+
+
+
+
+Recommender System Strategies
+-------------------
+		1. Content Filtering Approach
+		2. Collaborative Filtering Approach
+			a. Neighborhood Methods
+				a1. K-Nearset Neighbors (KNN)
+				a2. K-Means
+				a3. K-d Trees
+				a4. Locality Sensitice Hashing
+			b. Latent Factor Methods
+				b1. Matrix Factorization Method
+
+Target variables and predictor variables
+------------------------------------------
+	Target variables: These are the variables that should be the output
+•	 Predictor variables: These are the observations or the variables that are mapped to the target variable	
+
+Predictive analytics' techniques
+---------------------------------
+	The nature of the learning input and predicted outcome remains the same for all the techniques.
+
+	1. Regression-based prediction (ex: SGD)
+		Regression-based prediction is predicting the unknown value of a variable from the known value of another variable.
+
+	2. Model-based prediction  (ex: Naive Bayes)
+		We assume that the data follows a specific statistic model.
+		By following this method, we can take advantage of the structure of the data by building a parametric model for a given data distribution.
+
+The machine is exposed to an environment where it trains itself continually using trial and error.
+	3. Tree-based prediction (decision trees and random forests)
+		A tree-based prediction iteratively splits the outcome to different groups. It evaluates the similarity of outcomes in each group.
+	
+
+Classification versus regression
+---------------------------------
+		When the data is discrete, we will refer to it as classification.
+		When the data is continuous, we will refer to it as regression. 
+		Classification	predicts	whether	something	will	happen, and regression	predicts	how	much	of	something	will	happen.
+
+
+Linear regression:
+-----------------
+		It is used to estimate real values (cost of houses, number of calls, total sales etc.) based on continuous variable(s).
+		establish relationship between independent and dependent variables by fitting a best line.
+		This best fit line is known as regression line and represented by a linear equation Y= a *X + b.
+ 		
+
+
+
+Logistic regression
+--------------------
+	Don’t get confused by its name! It is a classification not a regression algorithm
+	It is used to estimate discrete values( Binary values like 0/1, yes/no, true/false) based on given set of independent variable(s).
+
+	For example, a person's gender (male or female)
+can be a discrete output variable
+
+Decision Tree:
+-----------------	
+	Mostly used for classification 
+	It works for  both categorical and continuos dependent variables.
+	
+Support Vector Machines:
+--------------------------
+
+	Refer for what is classification analysis mean : http://www.analyticsvidhya.com/blog/2014/10/support-vector-machine-simplified/	
+
+	SVM:
+	   
+	
+Naive Bayes:
+--------------
+	-> This	is a very	popular algorithm	for	text	classification.
+	-> Naïve Bayes uses the concept of probability to classify new items.
+	 -> Based on the Bayes theorem
+	
+	http://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/ for reference 
+Hidden Markov Model (HMM):	
+	-> Used in speech recognition, 
+			 parts-of-speech tagging, 
+			 gene prediction, 
+			 time-series analysis, and so on. 
+	-> 
+
+
+
+
+
+
+Random Forest:		
+	-> Random Forest consists of a collection of simple	tree predictors, each capable	of producing a response when presented
+with	a set of explanatory variables	
+	
+
+
+Recommendations 
+-------------------
+ 
+Class DataModel :
+   A DataModel implementation stores and provides access to all the preference, user, and item data needed in the computation
+
+Class UserSimilarity:
+   A UserSimilarity implementation provides some notion of how similar two users are; this could be based on one of many possible metrics or calculations.
+
+Class UserNeighborhood:
+	A UserNeighborhood implementation defines a notion of a group of users that are most similar to a given user.
+
+Class Recommender:
+	A Recommender implementation pulls all these components together to recommend items to users.
+     
+
+COMPONENTS : 
+
+1. DataModel
+          - GenricDataMode (Feed through Java calls)
+          - FileDataModel  (csv)
+          - JDBCDataModel     
+      a.Basic Object : Preference
+          - Preference is a triple (user, item, score)
+          - Stored in UserPreferenceArray
+      b. Two implementations
+         - GenricUserPrefernceArray (stores numerical preference)
+         - BooleanUserPreferenceArray (skips numerical preference)     
+       	
+2. UserSimilarity
+ SIMILARITY_COOCCURRENCE
+ SIMILARITY_LOGLIKELIHOOD
+ SIMILARITY_TANIMOTO_COEFFICIENT
+ SIMILARITY_CITY_BLOCK
+ SIMILARITY_COSINE
+ SIMILARITY_PEARSON_CORRELATION
+ SIMILARITY_EUCLIDEAN_DISTANCE
+With Preference (with rating) : 
+ -> Cosine Similarity : 
+     Cosine Coefficient, C(a,b) = NC / (√Na * √Nb)  
+
+ -> PEARSON Similarity : 
+      For users X and Y, 
+			sumXY / sqrt(sumX2 * sumY2)
+     sumX2 -> sum of the square of all X’s preferenxe values
+     sumY2 -> sum of the square of all Y’s preference values
+     sumXY -> sum of product of X and Y’s preference values for               all items for which both X and Y express a preference
+
+->  EUCLIDEAN DISTANCE
+      Distance between points p and q is,
+        d(p,q) = √(q1-p1)2 + (q2-p2)2 +...+(qn-pn)2 
+	
+User
+Item1
+Item2
+Distance
+Similaity to user 1
+User 1
+5.0
+3.0
+0.0
+1.000
+User 2
+2.0
+2.5
+3.014
+0.203
+  Ex: d(user1 and user2) = √(2-5)2 + (2.5-3.0)2
+                         = 3.014
+      similarity = d(user 1 and user 2) / (√∑ xi2 + √∑ yi2 )
+Without Preference (without rating) : 
+		If you don’t have preference , you have only people details of the movies they have watched online . Now how we could recommend him a new movie .
+
+ -> TANIMOTO Distance : 
+    Tanimoto coefficient, T(a,b) = NC / (Na+Nb-Nc) 
+              Na -> Number of Customers who bought product A
+              Nb -> Number of Customers who bought product B
+              Nc -> Number of Customers who bought both A and B
+
+ -> LOGLIKELIHOOD Similarity 
+
+      	Term			Likelihood of the outcome
+	Virtually certain		99-100% probability
+	Very likely			90-100% probability
+	Likely				66-100% probability
+	About as likely as not	33 to 66% probability
+	Unlikely				0-33% probability
+	Very unlikely			0-10% probability
+	Exceptionally unlikely	0-1% probability
+
+
+3. UserNeighborhood
+         - Nearest N users
+               The first N users with highest similarity are labeled as ‘neighbors’
+        - Thresholds
+             User whose similarity is above a threshold are labeled as ‘neighbors’
+ 
+4. Recommender
+         - GenricUserBasedRecommender
+         - GenericItemBasedRecommender
+         - SVDThe machine is exposed to an environment where it trains itself continually using trial and error.Recommender
+
+
+Model evaluation techniques
+		1. Confusion matrix
+		2. ROC graph
+		3. AUC
+	4. Entropy matrix
+Note: 
+	F1 Score:
+            1 -> best score
+	 	  0 -> worst score
+	Accuracy measures how often you get the right answer, f1 scores are measure of accuracy. 
+
+1. Confusion Matrix
+True Positive
+False Positive
+False Negative
+True Negative
+
+	Using this confusion matrix, we can find following terms:
+  a.	Accuracy
+		The proportion of the total number of predictions	 that were correctly	classified.
+		(True Positive	+ True Negative) / Positive + Negative
+	i.e, accuracy = (a+d) / (a+b+c+d)
+
+  b. Precision	or positive predictive value:
+		The	proportion of positive cases	that were	correctly	classified
+		(True Positive) / (True Positive + False Positive)
+	i.e, precision = a / (a+b)
+  c. Negative predictive value:
+		The	proportion of negative cases	that were	correctly	classified
+		(True Negative) / (True Negative + False Negative)
+	i.e, negative predicted value = d / (c+d)
+
+  
+d. Sensitivity / true	positive rate	/ recall:
+		The	proportion of 	actual positive cases that were	correctly	identified
+		(True Positive) / (True Positive + False  Negative)
+		i.e, recall = a / (a+c)
+
+e. Specificity :
+		The	proportion of 	actual negative cases.
+		(True Negative) / (False Positive + True Negative)
+		i.e, Specificity = a / (a+c)
+f. F1 score:
+		This	is the measure of a	test’s accuracy & it is calculated as follows:	F1=	2.
+((Positive predictive value (precision)	* sensitivity (recall))/(Positive	predictive value (precision)	+sensitivity (recall)))
+	
+
+2. ROC (Receiver Operating Characteristics graph)
+		ROC is a two-dimensional plot	of a classifier with false positive rate on the x axis and true positive rate on	the y axis
+		The lower point (0,0) in the figure represents never issuing a positive classification
+		Point (0,1) represents perfect classification
+		The	diagonal	from  (0,0) to	(1,1) divides the ROC space
+		Points above the diagonal represent good classification results, and points below the line	represent	poor	results
+3. Area under the ROC curve       
+	The area under the ROC curve is AUC.
+	To measure the quality of the	classification	model.
+	In practice, most of the	classification	models have an AUC 0.5 and 1.	
+	The closer the	value is to 1,	the greater is	your	classifier.
+
+- Prediction-based mesaures
+		1. Mean Square Error
+		2. RMSE
+		Note : Class -> AverageAbsoluteDifferenceEvaluator
+			  method -> evaluate()
+                parameters ->* Recommender implementaation,
+						* DataModel implementation,
+						* TraningSet size(eg 70%)
+						* % of data to use in the evaluation
+							(smaller % for fast prototyping)  
+	  - IR based measures		
+		1. Precision
+		2. Recall
+		3. F1-measure
+		4. F1@n
+		5. NDCG	(ranking measure)
+		Note : Class -> GenericRecommenderIRStatsEvaluator
+			  method -> evaluate()
+                parameters ->* Recommender implementaation,
+						* DataModel implementation,
+						* Relevance Threshold (mean + s.d)
+						* % of data to use in the evaluation
+							(smaller % for fast prototyping)
+
+
+
+
+
+
+
+Matrix Factorization:
+			Not all users will provide ratings on all the available items.
+			 Also, new items and new users tend to lack sufficient historical data to predict good recommendations.
+This is known as the cold start problem
+			This not solved in previous cf.
+
+Matrix Factorization Solved this problem by :
+			Ratings can be induced by certain imperceptible factors, which are not straightforward for us to estimate, so we need to use mathematical techniques to do that for us.
+	For example, 
+		1. if a particular user has rated The Matrix, the influence factor to do this can be the "amount of sci-fi involved in the movie."
+		2. If the same user has rated Titanic, then the influence factor can be the "amount of romance involved in themovie."
+		 So, using matrix factorization methods, we can recommend Her movie to that particular user by inferring these factors (latent factors).
+
+
+Two data types 
+	High-quality explicit feedback 
+		§Includes explicit input by users regarding their interest in products 
+		§We refer to explicit user feedback as ratings 
+		§Usually sparse matrix, since any single user is likely to have rated only a small percentage of possible items
+
+Implicit feedback 
+	Which indirectly reflects option by observing user behavior 
+		§Purchase history, browsing history, search patterns, mouse movements 
+			–Usually denotes the presence or absence of an 				event 
+			–Typically represented by a densely filled matrix 
+
+Difficulties:
+	High portion of missing values caused by sparseness in the useritem rating matrix
+In Mahout: 
+	- There are a few methods on which matrix factorization can be done, as follows:
+		1. Alternative Least Squares with Weighted-Lamda-Regularization (ALS-WS)
+		2. SGD
+	- SVD++ is a combination of matrix factorization and the latent factor model.
+
+1. Alternative least squares
+	To generate recommendations, which is inherently parallel.
+2. Singular value decomposition
+    We can come up with a	 more generalized set of features to represent the user-item preferences for a large dataset using dimensionality reduction techniques. 
+   This approach helps to generalize users into lesser dimensions.
+
+Stochastic gradient descent(SGD)
+	

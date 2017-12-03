@@ -1,0 +1,35 @@
+Major Applications of MapReduce:
+========================
+1. Query Log Processing
+2. Crawling, indexing and searching
+3. Analytics, Text Processing and sentiment analysis
+4. Machine Learning (Bayes and markov)
+5. Recommendation systems
+6. Document clustering and classfication
+7. Bioinformatics
+8. Genome analysis (biomarker analysis, regrssion algorithms such as linear and cox)
+
+Note:
+   DNA-Sequencing
+	Reading a patient‘s blood sample (as input) and generating variants (output) for a DNA sample.
+
+
+				Chapter -1                  
+
+Secondary-sort
+	Hadoop automatically sorts data emitted by mappers before being sent to reducers, what can you do if you also want to sort by value? 
+	You use secondary sorting of course.
+         Two possible approaches here.
+		1. In-reducer Sort
+		2. creating composite key
+	for Ref : https://www.javacodegeeks.com/2013/01/mapreduce-algorithms-secondary-sorting.html
+
+Approach-2:
+	
+      	In Hadoop, 
+			1. to persist custom data types they have to implement the Writable interface
+			2. To compare custom data types, then they have to implement an additional interface called WritableComparable.
+			3. Partitioner decides which mapper output goes to which reduer based on mapper output key
+			
+
+

@@ -1,0 +1,124 @@
+Install Mahout from source:
+          mvn	install	-Dmaven.test.skip=true
+
+How to run mahout on SPARK?
+For Spark-shell:
+      1. Set SPARK_HOME,  MASTER={spark-master-url}, MAHOUT_HOME
+       2. mahout spark-shell
+Executing job:
+1. Item similarity
+      mahout spark-itemsimilarity 
+	--input dataset.csv  --output op   
+	--master spark://jp:7077
+
+2. Text classification using Naïve Bayes
+	a. Train the dataset and generate the model:
+		mahout spark-trainnb 
+		-i 20news-train-vectors -el -o model 
+		-li labelindex -ow
+	b. Test and evaluate the dataset:
+		mahout spark-testnb 
+		-i 20news-train-vectors -m model -l labelindex
+		-ow -o 20news-testing		
+
+------------------------------------------------------------------   
+NOTE : 
+   TF-IDF : Term Frequency- Inverse document frequency
+How to run Mahout’s recommendation engine:
+	   $HADOOP_HOME/bin/hadoop jar mahout-example.jar  				com.mahout.SampleRecommenderJob 	
+		-input xxxx -output xxxx
+display the content in the sequence file :
+        hdfs dfs -text 20news-seq/part-m-00000
+
+
+------------------------------------------------------------------
+To run Mahout in local mode :
+       export MAHOUT_LOCAL=TRUE
+
+To convert file into Seq file :
+        mahout seqdirectory -i /media/jothipandiyan/Bizruntime/mahout-io/alsmovieinput \
+-o /media/jothipandiyan/Bizruntime/mahout-io/movies -c UTF-8 -chunk 5
+
+
+Singular value decomposition using ALS-WR as the factorizer
+ 	
+	1. The user-to-item matrix is factored into the user-to-feature matrix(U) and the
+item-to-feature matrix (M)
+	mahout parallelALS 
+			 --input /mahout-io/alsmovieinput  \
+			--output /mahout-io/alsmovieoutput  \
+			--lambda 0.1 \
+			--implicitFeedback true \
+			--alpha 0.8 \
+			--numFeatures 2 \
+			--numIterations 5 \
+			--numThreadsPerSolver 1 \
+			--tempDir tmp \
+	2. To get only the Topmost recommendation for each item
+		mahout recommendfactorized 
+		--input /alsmovieoutput/userRatings \
+		--userFeatures /mahout-io/alsmovieoutput/U/  \
+		--itemFeatures /mahout-io/alsmovieoutput/M/  \
+		--numRecommendations 1 \
+		--output /mahout-io/recommendations2	\	
+		--maxRating 1 /
+
+
+Naive Bayes
+     Text classification using Naïve Bayes
+	1. Create sequence files:
+		mahout seqdirectory -i 20news-all -o 20news-seq –ow
+
+	2.  To display the content in the sequence file
+		hdfs dfs -text 20news-seq/part-m-00000
+
+	3. Convert sequence files to vectors:
+		mahout seq2sparse -i 20news-seq 
+		-o 20news-vectors -lnorm -nv -wt tfidf
+
+		here, tfidf -> term frequency–inverse document frequency
+			The tf-idf value increases proportionally to the number of times a word appears in the document
+
+	4.  Split the training and test datasets:
+		 mahout split 
+		-i hdfs://localhost:9000/20news-vectors/tfidf-vectors 
+		--trainingOutput hdfs://localhost:9000/20news-train-vectors 
+		--testOutput  hdfs://localhost:9000/20news-test-vectors 
+		--randomSelectionPct 40 	
+		--overwrite --sequenceFiles -xm sequential
+
+	5. Train using the Naïve Bayes algorithm:
+		mahout trainnb -i 20news-train-vectors -el -o model 
+		-li labelindex –ow
+	
+	6. Test the generated model:
+		mahout testnb -i 20news-test-vectors -m model 
+		-l labelindex -ow -o 20news-testing
+
+	7. display the label index using the following command:
+		mahout seqdumper -i labelindex
+
+	8. vectordumper command to display the content of TF-IDF vectors:
+		mahout vectordump -i 20news-vectors/tfidf-vectors
+
+The different measures mentioned in the outcome to evaluate the model are
+mentioned here:	
+	•	 Kappa statistics: The Kappa statistic is a metric that compares an observed
+		accuracy with an expected accuracy
+	•	 Reliability: This is the extent to which a measurement gives results that
+		are consistent
+	•	 Precision: This is the fraction of retrieved instances that are relevant
+	•	 Recall: This is the fraction of relevant instances that are retrieved
+	•	 F1 measure: This is a measure that combines precision and recall	
+
+
+
+Clustering
+----------
+1. Visualizing clusters
+	a.DisplayClustering
+	b. DisplayCanopy
+	c. DisplayKMeans
+	d. DisplayFuzzyKMeans
+	e. DisplaySpectralKMeans 
+

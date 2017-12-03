@@ -1,0 +1,60 @@
+Installling geth
+=================
+sudo apt-get install software-properties-common
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo add-apt-repository -y ppa:ethereum/ethereum-dev
+sudo apt-get update
+sudo apt-get install ethereum
+
+
+Installing embark
+===================
+npm -g install embark-framework
+
+Using Embark framework
+-----------------------
+-> Create app
+-----------
+1. embark new test
+2. cd test
+3. embark test
+4. open localhost:8000
+
+===============================================================
+
+Ethereum 
+Install nodejs
+---------------
+sudo apt-get install nodejs
+
+insatll npm
+---------------
+sudo apt-get install npm
+
+install bower
+------------
+sudo npm install bower -g
+
+
+install component
+-----------------
+npm install -g component
+
+
+===================================================================
+
+Following http://www.ethdocs.org/
+
+1. Installing compiler for compiling contract files
+	npm install solc
+	
+	sudo apt-get -y install build-essential git cmake libgmp-dev libboost-all-dev \
+	    libjsoncpp-dev libleveldb-dev libcurl4-openssl-dev libminiupnpc-dev \
+	    libjsonrpccpp-dev libmicrohttpd-dev
+	sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo add-apt-repository -y ppa:ethereum/ethereum-dev
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install libcryptopp-dev
+
+

@@ -1,0 +1,7 @@
+1. Ubuntu config load
+ source ~/.profile
+
+2. find empty file -> find . -type d -empty
+
+3. To add more heap space, enter this command in your console:
+echo “export MAVEN_OPTS=”-Xmx512m -XX:MaxPermSize=512m”” > ~/.bash_profile

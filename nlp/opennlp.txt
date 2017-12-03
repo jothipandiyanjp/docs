@@ -1,0 +1,154 @@
+NLP Applications
+----------------------
+
+Applications range from simple to complex:
+
+	1. Spell checking, keyword search, finding synonyms
+	2. Extracting informations from websites 
+		- product price, dates, location, people, company names
+	3. Classifying, reading level of schools texts, positive/negative sentiment of longer documents.
+	
+Some More examples:
+	1. Search Engines
+		eg: Google, Yahoo
+
+	2. Question Answering
+	         eg: IBM Watson
+
+	3. Natural Language Assistant  
+		eg: OK Google, Apple siri
+
+	4. Information Extraction
+		eg: 
+                    1. extracting data from mail and creating event (Check notebook)
+                    2. extract useful information from resume
+
+	5. Information Extraction and sentiment analysis
+		eg: Reviews 
+                         Extract information of product from amazon create ratings
+
+	6. Machine Translations
+		-> Fully automatic 
+                           eg: google translate
+                  -> Helping human translator
+                           eg: Suggesting a relevant word while typing
+	
+         7. Classify Text into categories
+	8. Speech Understanding
+
+
+    NLP draws on research in Linguistics, Theoritical computer science, Mathematics, Statisitics, AI, Pyscology, Databases, etc..
+
+
+Note:
+
+1. Linguistics
+	Scientific study of language
+	1a. Structure
+		- Phonology (Study of language sounds)
+		- Morphology (Study of word formation)
+		- Syntax (study of sentence  )
+         1b. Meaning
+		- Semantics (Study of meaning)
+			-> Lexical semantics (Meaning of word)
+			-> Pharsal semantics (Sentence meaning)
+		- Pragmatics (Study of meaning in context)
+         1c. Context           	
+
+
+
+
+	Phonology -> Morphology -> Syntax -> Semantics -> Pragmatics
+ 	Explantion:
+               Sounds of language (Phonology) combine to form words (Morphology) which combine to form sentences (Syntax) which contain meanings (Semantics) which changes in context(Pragmatics). 
+
+  Phonetics
+---------------
+	-> Processing of speech
+	-> Challenges
+		1. Homophones: bank(finance) vs bank (river bank)
+		2. Near homophones: maatraa vs maatra	
+		3. Word Boundary
+			- aajaayenge(aa jaayenge (will come) or aaj aayenge(will come today))
+
+Morphology
+---------------
+	- word formation rules from root words
+	- 
+
+
+2. Disambiguation
+         Disambigution is word-sense disambigution, the process of identifying which meaning of word used in context. 
+	1. Sentence boundary disambiguation
+		Also known as sentence breaking, is the problem in natural language processing of deciding where sentences begin and end. Often natural language processing tools require their input to be divided into sentences for a number of reasons.
+		 However sentence boundary identification is challenging because punctuation marks are often ambiguous. For example, a period may denote an abbreviation, decimal point, an ellipsis, or an email address - not the end of a sentence.
+	Strategies:
+		The standard 'vanilla' approach to locate the end of a sentence
+			(a) If it's a period, it ends a sentence.
+			(b) If the preceding token is in the hand-compiled list of abbreviations, 			     then it doesn't end a sentence.
+			(c) If the next token is capitalized, then it ends a sentence.
+	2. Memory disambiguation	
+		
+	
+Sentence Boundary Detection:
+	In the following text fragment,
+		He called Mr. White at p.m. in Washington D.C. Mr. Green responded.
+
+	How can a computer tell which of the .’s, if any denot actual sentence boundaries.
+ 
+PartofSpeech Tagging :
+	- In the following two sentences:
+		1. Fruit flies like a banana 
+		2. Time flies like an arrow	
+	- The words flies and like are ambiguous. 
+	- In the first sentence ‘flies’ is a noun and ‘like’ is a verb while in the second sentence ‘flies’ is a verb and ‘like’ is a preposition.
+	How can a computer program automatically and accurately predict the partofspeech of ambiguous words like flies and like ?
+
+
+Prepositional Phrase Attachment:
+	- In the following two sentences,
+		1. He bought the car with a credit card
+		2 He bought the car with a sunroof
+	- what does a computer program need to know in order to know that with a credit card refers to bought whereas with a sunroof refers to the car 
+
+
+Parsing:
+	A natural language parser takes a sentence as input and determines the labelled syntactic tree structure that corresponds to the interpretation of the sentence.
+	For example,
+		 the different partofspeech assignments for the word flies and likes lead to dierent parse trees and different interpretations
+		[S (NP (Fruit) (Flies)) (VP (like) (NP (a) (banana)))]
+				or
+		[S (NP (Time)) (VP (flies  (PP (like  (NP (an) (arrow))))) )]
+	Parsing requires the resolution of all syntactic ambiguities that arise during the interpretation of a sentence and not just the noun verb ambiguities or prepositional phrase attachments discussed earlier.
+	How can a computer automatically predict all the plausible tree structures and then choose among them to resolve any structural ambiguities ?
+
+
+Text Categorization:
+	Given a document and a topic the task is to decide if the docu ment should be categorized with the topic.
+	 If the document contains the word money is it relevant to the topic of mergers and acquisitions ?
+	How can the computer best use the words in the documents to predict the topic ?
+
+
+
+
+Maxent Entropy:
+------------------------
+	
+
+
+Opennlp supports
+---------------------
+	1. Sentence Detection
+		Sentence detector is for detecting sentence boundaries.
+	2. Tokenization
+		Tokens are usually words which are separated by space, but there are exceptions. For example, "isn't" gets split into "is" and "n't, since it is a a brief format of "is not".		
+	3. Name Finder
+		-> Finds names in the context. 
+		-> Check out the following example to see what name finder can do. It accepts an array of strings, and find the names inside.			
+		4.  Chunking
+			
+5. Part-of-speech tagging,
+6. Parsing 
+7. Sentence segmentation, 
+8. Coreference resolution	
+

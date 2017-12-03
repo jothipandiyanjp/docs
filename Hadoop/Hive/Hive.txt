@@ -1,0 +1,125 @@
+                                                     Hive
+
+
+Hive:
+    It provides : 
+	1. Tools to easy access to data via Sql,
+	   thus enabling data warehousing task such as ETL,
+		reporting, data analysis.
+	2. Acess to file stored either in HDFS or HBASE
+	3. Query excution via Tez, Spark, MR
+
+
+Run Hive:
+
+	$HIVE_HOME/bin/hive
+
+    After installing hive, if the first thing you did was run hive, hive attempted to create/initialize the metastore_db, but apparently might not get it right. On that initial run, maybe you saw your error:
+Exception in thread "main" java.lang.RuntimeException: Hive metastore database is not initialized. Please use schematool (e.g. ./schematool -initSchema -dbType ...) to create the schema. If needed, don't forget to include the option to auto-create the underlying database in your JDBC connection string (e.g. ?createDatabaseIfNotExist=true for mysql)
+
+Running hive, even though it fails, creates a metastore_db directory in the directory from which you ran hive:
+           $ ls -l |grep meta
+            drwxrwxr-x 5 testuser testuser 4096 Apr 14 12:44 metastore_db
+So when you then tried running
+           $ schematool -initSchema -dbType derby
+           The metastore already existed, but not in complete form.
+So the answer is:
+1. Before you run hive for the first time, run
+        schematool -initSchema -dbType derby
+2. If you already ran hive and then tried to initSchema and it's failing:
+         mv metastore_db metastore_db.tmp
+3. Re run
+          schematool -initSchema -dbType derby
+4. Run hive again
+
+mysql -u root -p
+CREATE DATABASE metastore;
+USE metastore;
+SOURCE $HIVE_HOME/scripts/metastore/upgrade/mysql/hive-schema-0.14.0.mysql.sql;
+ CREATE USER 'hiveuser'@'%' IDENTIFIED BY 'hivepassword'; 
+
+GRANT all on *.* to 'hiveuser'@localhost identified by 'hivepassword';
+flush privileges;
+
+
+
+DDL Operations:
+1. Creating Hive tables
+     CREATE TABLE pokes (foo INT, bar STRING);
+   CREATE TABLE invites (foo INT, bar STRING) PARTITIONED BY (ds STRING);
+   
+  SHOW TABLES;   DESCRIBE invites;
+
+
+Hive with mysql
+1. sudo cp hive-default.xml.template  hive-site.xml
+2. hive-site.xml
+  configuration>
+   <property>
+      <name>javax.jdo.option.ConnectionURL</name>
+      <value>jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true</value>
+      <description>metadata is stored in a MySQL server</description>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionDriverName</name>
+      <value>com.mysql.jdbc.Driver</value>
+      <description>MySQL JDBC driver class</description>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionUserName</name>
+      <value>root</value>
+      <description>user name for connecting to mysql server</description>
+   </property>
+   <property>
+      <name>javax.jdo.option.ConnectionPassword</name>
+      <value>root</value>
+      <description>password for connecting to mysql server</description>
+   </property>
+</configuration>
+
+
+
+error
+
+1. Error:  Relative path in absolute URI: ${system:java.io.tmpdir%7D/$%7Bsystem:user.name%7D
+
+solution: Modify -> 
+<property>
+    <name>hive.exec.local.scratchdir</name>
+    <value>/tmp/hive-${user.name}</value>
+    <description>Local scratch space for Hive jobs</description>
+  </property>
+  <property>
+    <name>hive.downloaded.resources.dir</name>
+    <value>/tmp/hive-${user.name}</value>
+    <description>Temporary local directory for added resources in the remote file system.</description> </property>>
+
+2. Error
+java.sql.SQLException: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. MetaException(message:Got exception: org.apache.hadoop.security.AccessControlException Permission denied: user=jp, access=WRITE, inode="/user/hive/warehouse/testhivedrivertable":hduser:supergroup:drwxr-xr-x
+ 
+Solution : Modify in hive-site.xml 
+           hive.server2.enable.doAs to false
+
+
+
+To Start metastore (9083)
+	
+	1. apache-hive-2.0.1-bin/bin/hive  --service metastore
+
+Hive2 Server (10000 & 10002(ui))
+
+	1. apache-hive-2.0.1-bin/bin/hiveserver2
+
+Beeline
+
+To connect to hive       
+   	1. apache-hive-2.0.1-bin/bin/beeline 
+     2. !connect jdbc:hive2://localhost:10000
+
+In mysql to check metadata of tables created by hive client
+
+	1. use jpHIve;
+	2. select * from TBLS;  (it will list all the tables metadata)
+
+
+

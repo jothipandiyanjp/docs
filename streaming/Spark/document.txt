@@ -1,0 +1,54 @@
+
+Running spark app in Standalone mode
+		1. Place extracted spark file in all nodes and it must in same location
+
+		2. Configure slaves ip address in master “conf/slaves”
+
+		3.  To Start “./bin/start-all.sh”  it will start master as well as slaves
+
+		4. To submit application
+                              ./bin/spark-submit --class="spark.core.example.JavaWordCount"   --master                       		      spark://192.168.1.55:7077 /path to jar 
+ 
+Running spark app in yarn
+
+/bin/spark-submit  --class="spark.core.example.JavaWordCount"   \
+--master  yarn  \
+--deploy-mode  cluster \
+--driver-memory 1g \
+--executor-memory 1g \
+--executor-cores 1 \
+
+
+jarfile path
+arguments if any (hdfs://192.168.1.193:9000/jo/README.patentcite)
+/
+
+./bin/spark-submit --class org.apache.spark.examples.JavaWordCount \
+    --master yarn \
+    --deploy-mode cluster \
+    --driver-memory 1g \
+    --executor-memory 1g \
+    --executor-cores 1 \
+    --queue thequeue \
+    lib/spark-examples*.jar \
+
+   hdfs://192.168.1.193:9000/jo/README.patentcite
+
+Required executor memory (2048+384 MB) is above the max threshold (2048 MB) of this cluster! Please check the values of 'yarn.scheduler.maximum-allocation-mb' and/or 'yarn.nodemanager.resource.memory-mb'.
+
+ Exceptions: 
+ 
+1. Task Not Serializable
+		- function has a reference to the instance of the outer class , and 		  that is not serializable
+		
+2. java.lang.outOfMemoryError
+		- new SparkConf().set("spark.executor.memory", "2g");
+                   -  export  _JAVA_OPTIONS="-Xms2048m -Xmx5072m"
+                   - 
+
+
+
+Recover from failure:
+ 
+1. Checkpoint the rdds.
+2. Setting config spark.streaming.receiver.writeAheadLog.enable to true  
