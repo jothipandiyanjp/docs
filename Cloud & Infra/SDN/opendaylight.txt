@@ -1,0 +1,88 @@
+
+To create virtual switches
+--------------------------
+ 1. Using Mininet
+        -> before installing this install miniet as given in mininet.txt
+        -> to create simple network topology 
+             sudo mn --topo linear,3 --mac --controller = remote, ip = 192.168.1.26, port = 6633 --switch ovs, protocol = OpenFlow13 
+        	 sudo mn --controller=remote,ip=127.0.0.1 --mac --topo=linear,3 --switch ovsk,protocols=OpenFlow13
+
+
+        	 sudo mn --controller=remote,ip=192.168.1.130 --mac --topo=linear,3 --switch ovsk,protocols=OpenFlow13
+   Note: Follow this link
+          http://www.brianlinkletter.com/using-the-opendaylight-sdn-controller-with-the-mininet-network-emulator/
+
+OpenDaylight User Experience (DLUX)
+------------------------------
+  
+   In Beryllum, feature:install odl-dlux-core  odl-dlux-node  odl-dlux-yangui  odl-dlux-yangvisualizer
+    -> odl-l2switch-switch 
+			1. internally enables the MD-SAL data broker and OpenFlow plugin service.
+                        2. It also makes sure hosts and switches are visible in the Topology section of the DLUX UI. 
+    -> odl-mdsal-apidocs is required for the Yang section of the DLUX UI.
+
+         Note: check what all features are installed by running following command -
+                     feature:list -i
+
+   -->  To run the L2 Switch inside the OpenDaylight distribution
+         feature:install odl-l2switch-switch-ui  
+     
+
+Modules that use the MD SAL based apis are :
+• Nodes
+• Yang UI
+• Topology
+Modules that use the AD SAL based apis are:
+• Connection manager
+• Container
+• Network
+• Flows
+
+
+XSQL
+---------
+      feature:install odl-mdsal-xsql
+
+
+OpenSwitch
+-----------
+	OVS_VERSION=2.1.2
+	sudo apt-get install build-essential fakeroot debhelper libssl-dev
+	wget http://openvswitch.org/releases/openvswitch-${OVS_VERSION}.tar.gz
+	tar -xzf openvswitch-${OVS_VERSION}.tar.gz
+	cd openvswitch-${OVS_VERSION}
+	DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
+	cd ..
+	sudo dpkg -i openvswitch-common_${OVS_VERSION}-1_amd64.deb openvswitch-
+	switch_${OVS_VERSION}-1_amd64.deb
+	sudo apt-get install mininet
+
+ALTO
+--------
+     1. Application Layer Traffic Optimization services
+     2. 
+
+                             +-----------------+                      
+     +-----------+  NETCONF/ |  +-----------+  |                      
+     | ALTO/YANG |  RESTCONF |  | ALTO/YANG |  |                      
+     | Client    | ============ | Server    |  |                      
+     +-----------+           |  +-----------+  |                      
+                             |       |         |                      
+                             |       |         |                      
+                             |  +-----------+  |          +--------+  
+                             |  | ALTO      |  | RFC7285  | ALTO   |  
+                             |  | Server    | =========== | Client |  
+                             |  +-----------+  |          +--------+  
+                             +-----------------+                      
+   
+                      Figure 1: ALTO/YANG Components.
+
+    3. Administering or Managing ALTO
+            feature:install odl-alto-provider odl-alto-manager odl-alto-northbound odl-alto-hosttracker
+    4. ALTO Architecture
+            -> core packages include: alto-model, service-api-rfc7285, alto-northbound
+            -> basic packages include: alto-provider, simple-impl, alto-manager
+            -> service packages include: alto-hosttracker
+
+
+

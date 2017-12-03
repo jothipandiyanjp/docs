@@ -1,0 +1,45 @@
+ZooKeeper ( http://zookeeper.apache.org ) allows distributed processes
+------------
+coordinating with each other through a shared hierarchical name space of data
+registers (znodes), much like a file system.
+
+Apache Kafka : 
+---------------
+   - Apache Kafka is an open source, distributed publish-subscribe messaging system,
+mainly designed with the following characteristics:
+
+1.Persistent messaging: To derive the real value from big data, any kind
+of information loss cannot be afforded. Apache Kafka is designed with O(1)
+disk structures that provide constant-time performance even with very large
+volumes of stored messages, which is in order of TB.
+
+2.High throughput: Keeping big data in mind, Kafka is designed to work
+on commodity hardware and to support millions of messages per second.
+
+3. Distributed: Apache Kafka explicitly supports messages partitioning over
+Kafka servers and distributing consumption over a cluster of consumer
+machines while maintaining per-partition ordering semantics.
+
+4.Multiple client support: Apache Kafka system supports easy integration of
+clients from different platforms such as Java, .NET, PHP, Ruby, and Python.
+
+5.Real time: Messages produced by the producer threads should be immediately
+visible to consumer threads; this feature is critical to event-based systems such
+as Complex Event Processing (CEP) systems.
+
+Setting up the Kafka Cluster
+-------------------------------
+With Kafka, we can create multiple types of clusters, such as the following:
+•	 Single node – single broker cluster
+•	 Single node – multiple broker cluster
+•	 Multiple node – multiple broker cluster
+
+Kafka Design
+-------------
+Important Kafka design facts are as follows:
+1. The fundamental backbone of Kafka is message caching and storing it on
+the filesystem. In Kafka, data is immediately written to the OS kernel page.
+Caching and flushing of data to the disk is configurable.
+2.
+
+

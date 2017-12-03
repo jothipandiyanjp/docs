@@ -1,0 +1,44 @@
+VTN Coordinator
+------------------
+      VTN Coordinator is responsible for interfacing between multiple controller environment, and providing RESTful APIs for Northbound Applications
+
+VTN Manager
+--------------
+      VTN Manager is available as ADSAL bundle for OpenDaylight Controller. Responsible for:
+		- OpenFlow PACKET_IN and PACKET_OUT handling
+		- Providing RESTful API for basic VTN Semantics
+		- Setting Flow Entries on OpenFlow Switches (FLOW_MOD)
+
+Installation
+----------
+ VTN manager : 
+   	1. git clone https://git.opendaylight.org/gerrit/p/vtn.git
+        2. cd ${VTN_DIR}/manager
+        3. mvn clean install –DskipTests
+        4. 
+
+  VTN Coordinator
+ --------------------
+     1.  sudo apt-get install pkg-config gcc make  ant g++ maven git libboost-dev libcurl4-openssl-dev \
+          libjson0-dev libssl-dev openjdk-7-jdk unixodbc-dev xmlstarlet
+     2. 
+
+
+Using VTN Manager REST APIs
+----------------------------
+    • Creating a VTN named BLUE 
+    • Creating VTN Configuration(s) using VTN Manager RESTful APIs         
+            POST /controller/nb/v2/vtn/default/vtns/BLUE
+		• JSON: {"description": “BLUE Colored Virtual Network", "idleTimeout": "0","hardTimeout":"0"}
+
+    http://127.0.0.1:8083/vtn-webapi/vtns/vtn_one/vbridges/vbr_one/interfaces/ifone
+	user    : admin
+        password: adminpass
+
+curl --user admin:adminpass -H 'content-type: application/json' -X GET \
+'http://192.168.1.200:8083/vtn-webapi/api_version.json'  
+
+curl -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://192.168.1.200:8083/restconf/operations/vtn:update-vtn -d '{"input":{"tenant-name":"vtn1","update-mode":"CREATE","operation":"SET","description":"creating vtn","idle-timeout":300,"hard-timeout":0}}'
+
+curl -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X GET http://192.168.1.200:8083/coordinator_version
+

@@ -1,0 +1,62 @@
+Start the server
+-----------------
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+Create a topic
+--------------
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+bin/kafka-topics.sh --list --zookeeper localhost:2181 test
+
+Send some messages
+------------------
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+Start a consumer
+-----------------
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+
+Setting up a multi-broker cluster
+------------------------------------
+bin/kafka-server-start.sh config/server-1.properties 
+bin/kafka-server-start.sh config/server-2.properties 
+
+describe topics
+----------------
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+
+
+config options
+----------------------
+ bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic my-topic --partitions 1
+        --replication-factor 1 --config max.message.bytes=64000 --config flush.messages=1
+
+bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic my-topic
+    --config max.message.bytes=128000
+
+bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic my-topic
+    --delete-config max.message.bytes
+
+Adding and removing topics
+--------------------------
+
+ bin/kafka-topics.sh --zookeeper zk_host:port/chroot --create --topic my_topic_name
+       --partitions 20 --replication-factor 3 --config x=y
+
+MOdifying topics
+----------------------
+ bin/kafka-topics.sh --zookeeper zk_host:port/chroot --alter --topic my_topic_name
+       --partitions 40
+
+deleting a topic:
+------------------
+
+bin/kafka-topics.sh --zookeeper zk_host:port/chroot --delete --topic my_topic_name
+Topic deletion option is disabled by default. To enable it set the server config
+delete.topic.enable=true
+
+How to check whether a mirror is keeping up
+----------------------------------------------
+bin/kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --group KafkaMirror --zkconnect dc1-zookeeper:2181 --topic test-topic
+
+

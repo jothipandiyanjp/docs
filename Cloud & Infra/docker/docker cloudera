@@ -1,0 +1,22 @@
+docker run --privileged=true \
+--hostname=quickstart.cloudera \
+-t -i imageID \
+/usr/bin/docker-quickstart
+
+
+docker run --privileged=true -ti -d -p 8020:8020 -p 8888:8888 -p 80:80 -p 8088:8088 -p 9000:9000 -p 2181:2181 -p 50070:50070 -p 7180:7180 \
+ --name JP --hostname=quickstart.cloudera \
+  4239cd2958c6 \
+/usr/bin/docker-quickstart 
+
+
+8020 -> namenode
+80 -> tutorial
+cdh manager -> 7180
+
+
+restart cloudera manager
+----------------------------
+sudo service cloudera-scm-server restart
+
+

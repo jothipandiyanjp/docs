@@ -1,0 +1,153 @@
+Running your image:
+------------------
+	docker run -d -t ubuntu /bin/bash
+	docker run -d -p 8080:8080 example/docker-node-hello:latest
+	docker run --expose=22 -i -t fedora	/bin/bash
+
+Execute a container
+--------------------
+     docker exec -i -t 537542d2aae0 /bin/bash
+
+To stop the existing container
+----------------------------
+        1. docker ps
+               CONTAINER-ID            Image                        Status	...
+              b7145e06083f   example/centos-node-hello:latest    Up 4 minutes...
+
+        2. docker stop b7145e06083f
+        3. forcefull stop -> 	docker stop -t 25 b7145e06083f
+
+Kill a Container
+------------------
+       docker kill b7145e06083f  
+
+List all the containers	on the system
+-----------------------------------
+        docker ps -a
+
+Run the container by adding one argument
+---------------------------------------------
+	docker run -d -p 8080:8080 -e WHO="Sean and Karl" \docker-node-hello:latest
+
+restart	the docker daemon
+----------------------
+           sudo	service	docker.io restart   or   sudo /etc/init.d/docker restart 
+
+delete container
+-----------------
+        docker rm
+
+Remove images 
+---------------
+       docker rmi 
+Inspect container
+------------------
+        docker inspect  b7145e06083f
+
+CONTAINER :
+============
+
+Creating container name
+-------------------------
+       docker create --name="awesome-service" ubuntu:latest 
+
+To set the hostname
+--------------------
+        docker run --rm -ti --hostname="mycontainer.example.com" ubuntu:latest /bin/bash
+
+Media Access Control (MAC) address
+---------------------------------------
+        docker run --rm -ti --mac-address="a2:11:aa:22:bb:33" ubuntu:latest /bin/bash
+
+Storage	Volumes
+--------------
+      Mounting :
+      	-> docker run --rm -ti -v /mnt/session_data:/data	ubuntu:latest /bin/bash
+	-> mount | grep data
+        -> docker run --rm -ti --read-only=true -v /mnt/session_data:/data \ ubuntu:latest /bin/bash
+       
+Auto-Restarting	a Container
+-------------------------
+        --restart = no or always (or) on-failure:3
+      ex:
+            docker run -ti --restart=on-failure:3 -m 200m --memory-swap=300m	\
+		progrium/stress	--cpu 2 --io 1 --vm 2 --vm-bytes 128M --timeout	120s
+
+
+Pausing	and Unpausing a Container 
+--------------------------------
+         docker	pause	6b785f78b75e
+	 docker	unpause	6b785f78b75e
+
+List all images
+---------------
+         docker images
+
+To delete an images using image-id
+---------------------
+         docker -rmi 98ad2d42179c
+
+
+To delete all the containers
+----------------------------
+	 docker stop $(docker ps -q)
+          docker rm $(docker ps -a -q)
+
+To delete all the images
+----------------------------
+          docker rmi $(docker images -q -)
+
+
+Copying	file
+------------
+         docker	cp
+
+Saving a container’s filesystem to a tarball
+--------------------------------------------
+	   docker export
+
+Saving a image filesystem to a tarball
+---------------------------------------
+          docker save
+
+Loading an image from tarball 
+-----------------
+           docker import
+
+To pull image 
+------------
+        docker pull centos
+
+To pull	an image with the specific tag
+----------------------------------
+        docker pull centos:centeos5
+
+Mount a host directory as a data volume
+----------------------------------------
+        docker run -i -t --priviliged -v /media/jothipandiyan/Bizruntime/:/home/ ubuntu bash
+
+docker commit
+---------------
+       docker commit -a "Neependra Khare" -m "Fedora	with HTTPD package" 0a15686588ef nkhare/fedora:httpd
+
+docker save
+------------
+       docker save busybox > busybox.tar
+           or 
+       docker save --output busybox.tar 
+           or 
+       docker save -o fedora-latest.tar fedora:latest (Specfic tag)
+
+Docker inspect
+--------------------
+       
+       docker inspect --format='{{.NetworkSettings.IPAddress}}' $ID
+
+Docke Network
+---------------
+	1. Creating bridge network:
+		docker network create --driver bridge isolated_now
+	2. Inspecting 
+		docker network inspect isolated_now
+
+

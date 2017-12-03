@@ -1,0 +1,55 @@
+What is XMl?
+-------------
+ XML stands for EXtensible Markup Language
+XML is a markup language much like HTML
+XML was designed to store and transport data
+XML was designed to be self-descriptive
+XML is a W3C Recommendation
+
+XPath definition
+--------------------
+
+XPath is a language that describes a way to locate and process items in Extensible Markup Language (XML) documents by using an addressing syntax based on a path through the document's logical structure or hierarchy.
+This makes writing programming expressions easier than if each expression had to understand typical XML markup and its sequence in a document. 
+XPath also allows the programmer to deal with the document at a higher level of abstraction. 
+XPath is a language that is used by and specified as part of both the Extensible Stylesheet Language Transformations (XSLT) and by XPointer (SML Pointer Language).
+It uses the information abstraction defined in the XML Information Set (Infoset). Since XPath does not use XML syntax itself, it could be used in contexts other than those of XML.
+
+
+
+DOM parse : 
+----------------
+When you parse an XML document with a DOM parser, you get back a tree structure that contains all of the elements of your document. The DOM provides a variety of functions you can use to examine the contents and structure of the document.
+
+DOM XML Parser
+----------------
+The DOM is the easiest to use Java XML Parser. It parses an entire XML document and load it into memory, y; then models it in a “TREE” structure traversal or manipulation. 
+In short, it turns a XML file into DOM or Tree structure, and you have to traverse a node by node to get what you want.
+
+DOM Parser is slow and consumes a lot of memory when it loads an XML document which contains a lot of data. 
+Please consider SAX parser as solution for it, SAX is faster than DOM and use less memory.
+
+
+SAX XML Parser
+----------------
+SAX parser is work differently with DOM parser, it does not load any XML document into memory and create some object representation of the XML document. Instead, the SAX parser use callback function  (org.xml.sax.helpers.DefaultHandler) to informs clients of the XML document structure.
+SAX is faster than DOM and use less memory.
+-startDocument() and endDocument() – Method called at the start and end of an XML document.
+-startElement() and endElement() – Method called at the start and end of a document element.
+-characters() – Method called with the text contents in between the start and end tags of an XML document element.
+
+Smooks
+--------
+Smooks is a Java Framework/Engine for processing XML and non XML data (CSV, EDI, Java, JSON etc).
+
+While Smooks can be used as a lightweight platform on which to build your own custom processing logic for a wide range of data formats, "out of the box" it comes with some very useful features that can be used individually, or seamlessly combined together:
+
+Transformation: Perform a wide range of Data Transforms. Supports many different Source and Result types -XML/CSV/EDI/Java/JSON to XML/CSV/EDI/Java/JSON.
+Java Binding: Bind into a Java Object Model from any data source (CSV, EDI, XML, Java, JSON etc).
+Huge Message Processing: Process huge messages (GBs) - Split, Transform and Route message fragments to JMS, File, Database etc destinations. Route multiple message formats to multiple destinations in a single pass over a message
+Message Enrichment: Enrich a message with data from a Database, or other Datasources.
+Combine: Combine the above features in different ways e.g. add Message Enrichment as part of a Splitting and Routing process
+
+	
+
+

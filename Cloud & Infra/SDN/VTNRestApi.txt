@@ -1,0 +1,53 @@
+APi version : 
+---------------
+	http://192.168.1.200:8083/vtn-webapi/api_version.json  
+	Authorization : Basic admin:adminpass
+	content-Type  : application/json
+	accept	      : application/json
+	RequestMethod : GET
+ 
+
+Create VTN: 
+---------------
+	http://192.168.1.200:8083/vtn-webapi/vtns.json  
+	Authorization : Basic admin:adminpass
+	content-Type  : application/json
+	accept	      : application/json
+	RequestMethod : POST
+	Body	      : {"vtn" : {"vtn_name":"vtn3"}}
+
+Create COntroller: 
+---------------
+	http://192.168.1.200:8083/vtn-webapi/controllers.json 
+	Authorization : Basic admin:adminpass
+	content-Type  : application/json
+	accept	      : application/json
+	RequestMethod : POST
+	Body	      : {"controller": {"controller_id": "odc1", "ipaddr":"10.100.9.52", "type": "odc", "version": "1.0", "auditstatus":"enable"}}
+                        {"controller":{"controller_id":"odll","ipaddr":"192.168.1.46","type":"odc","version":"1.0","auditstatus":"enable"}}
+
+Controller Status:
+----------------
+        http://192.168.1.200:8083/vtn-webapi/controllers/detail
+
+-> you can run following command to to confirm if all the switches are correctly connected to the corresponding controller
+           sudo ovs-vsctl show 
+
+
+http://192.168.1.21:8083/vtn-webapi/controllers/odll1/domains/(DEFAULT)/logical_ports
+
+
+
+
+
+PP-OF:openflow:3-s3-eth1
+PP-OF:openflow:2-s1-eth1
+
+
+
+"{\"vbridge\" : "+ "{\"vbr_name\":\"vbr1\",\"controller_id\":\"odc1\",\"domain_id\":\"(DEFAULT)\"}}";
+
+
+"{\"interface\": {\"if_name\": \"if1\"}}"
+
+%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - 
