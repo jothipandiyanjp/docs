@@ -1,0 +1,49 @@
+How to instatll Spark on Wimdows 10 
+
+
+1. Download the Spark Zip and copy it in C drive
+2. Define SPARK_HOME in Environment variables
+3. Download https://github.com/steveloughran/winutils project
+4. Copy the Specific version of hadoop Binaries in folder like
+		|-C:\
+			|-hadoop\
+					|-bin\
+					
+	In bin copy all hadoop binaries
+
+5. Define a HADOOP_HOME in Environment (Optional)
+6. Opne cmd in Admin mode go to hadoop home and run command
+	C:\hadoop\bin>winutils.exe chmod 777 \tmp\hive
+	
+	
+	All Done!!!!!!!
+
+	
+Now how to run Cluster
+
+1. open Cmd in Admin mode
+2. go to C:\spark-2.1.0-bin-hadoop2.7\bin
+3. run command to start the master 
+	spark-class org.apache.spark.deploy.master.Master
+4. open another Cmd in Admin and now try to add worker to Master by using command 
+	spark-class org.apache.spark.deploy.worker.Worker spark://192.168.56.1:7077
+
+
+
+============
+ val cl = ClassLoader.getSystemClassLoader
+'	
+	
+	spark-shell.cmd --jars C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\ignite-core-2.1.0.jar,C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\cache-api-1.0.0.jar
+	
+	
+	
+	import org.apache.ignite.configuration._
+	
+	
+	./bin/spark-shell --packages org.apache.ignite:ignite-spark:2.2.0 --master  spark://192.168.56.1:7077   --repositories http://repo.maven.apache.org/maven2/org/apache/ignite
+	
+	
+	./bin/spark-shell --jars C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\ignite-core-2.1.0.jar,C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\ignite-spark\ignite-spark-2.1.0.jar,C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\cache-api-1.0.0.jar,C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\optional\ignite-log4j\ignite-log4j-2.1.0.jar,C:\Bizruntime\JP\Projects\Softwares\Ignite\apache-ignite-fabric-2.1.0-bin\libs\optional\ignite-log4j\log4j-1.2.17.jar --master spark://192.168.56.1:7077
+
+	spark-shell --master spark://192.168.56.1:7077	
